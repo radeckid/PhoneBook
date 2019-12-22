@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PhoneBook</string>
+    <string name="title_activity_main">Kontakty</string>
+    <string name="search">Szukaj</string>
+    <string name="title_activity_add_contact_">Imie Nazwisko</string>
+    <string name="name">Imię:</string>
+    <string name="surname">Nazwisko:</string>
+    <string name="email">Adres e-mail:</string>
+    <string name="phonenumber">Numer tel.:</string>
+    <string name="save">Zapisz</string>
+    <string name="cancel">Anuluj</string>
+
+</resources>
