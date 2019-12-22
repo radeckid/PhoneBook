@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.damrad.phonebook">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name=".ShowContact_activity"
+            android:label="@string/title_activity_show_contact_activity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".AddContact_Activity"
             android:label="@string/title_activity_add_contact_"

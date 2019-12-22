@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        contactViewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
+        contactViewModel = ViewModelProviders.of(this).get(ContactViewModel::class.java)
         contactViewModel.allContacts.observe(this, Observer { contacts ->
             contacts?.let { adapter.setList(it as ArrayList<Contact>) }
         })

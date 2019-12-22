@@ -9,5 +9,9 @@
     <string name="phonenumber">Numer tel.:</string>
     <string name="save">Zapisz</string>
     <string name="cancel">Anuluj</string>
+    <string name="woman">Kobieta</string>
+    <string name="man">Mężczyzna</string>
+    <string name="gender">Płeć:</string>
+    <string name="call">Zadzwoń</string>
 
 </resources>
