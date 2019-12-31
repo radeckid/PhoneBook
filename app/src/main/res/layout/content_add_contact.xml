@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ShowContact_activity"
-    tools:showIn="@layout/activity_show_contact_activity">
+    tools:context=".AddContactActivity"
+    tools:showIn="@layout/activity_add_contact">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,18 +22,18 @@
             android:layout_gravity="center|start"
             android:padding="4dp"
             android:text="@string/name"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/nameTV"
+        <EditText
+            android:id="@+id/addNameTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|start"
             android:layout_marginStart="4dp"
+            android:inputType="textPersonName|textCapWords"
             android:padding="4dp"
-            android:textSize="24sp"
-            android:textColor="@android:color/black"
+            android:textSize="26sp"
             tools:text="Damian" />
 
 
@@ -43,18 +43,18 @@
             android:layout_gravity="center|start"
             android:padding="4dp"
             android:text="@string/surname"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/surnameTV"
+        <EditText
+            android:id="@+id/addSurnameTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|start"
             android:layout_marginStart="4dp"
+            android:inputType="textPersonName|textCapWords"
             android:padding="4dp"
-            android:textSize="24sp"
-            android:textColor="@android:color/black"
+            android:textSize="26sp"
             tools:text="Radecki" />
 
         <TextView
@@ -63,18 +63,18 @@
             android:layout_gravity="center|start"
             android:padding="4dp"
             android:text="@string/email"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/emailTV"
+        <EditText
+            android:id="@+id/addEmailTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|start"
             android:layout_marginStart="4dp"
+            android:inputType="textEmailAddress"
             android:padding="4dp"
-            android:textColor="@android:color/black"
-            android:textSize="24sp"
+            android:textSize="26sp"
             tools:text="damianradecki97@gmail.com" />
 
         <TextView
@@ -83,39 +83,54 @@
             android:layout_gravity="center|start"
             android:padding="4dp"
             android:text="@string/phonenumber"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/phoneNrTV"
+        <EditText
+            android:id="@+id/addPhoneTV"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|start"
             android:layout_marginStart="4dp"
+            android:inputType="phone"
             android:padding="4dp"
-            android:textSize="24sp"
-            android:textColor="@android:color/black"
+            android:textSize="26sp"
             tools:text="533 252 518" />
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|start"
-            android:text="@string/gender"
             android:padding="4dp"
-            android:textSize="20sp"
+            android:text="@string/gender"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/genderTV"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|start"
-            android:layout_marginStart="4dp"
-            android:padding="4dp"
-            android:textColor="@android:color/black"
-            android:textSize="24sp"
-            tools:text="Mężczyzna" />
+        <com.google.android.material.chip.ChipGroup
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:layout_marginTop="8dp">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipWoman"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/woman"
+                android:textSize="20sp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipMan"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/man"
+                android:textSize="20sp" />
+
+        </com.google.android.material.chip.ChipGroup>
+
 
     </LinearLayout>
 

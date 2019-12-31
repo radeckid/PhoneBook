@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -14,12 +14,11 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
-            android:name=".ShowContact_activity"
-            android:label="@string/title_activity_show_contact_activity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:name=".ShowContactActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".AddContact_Activity"
-            android:label="@string/title_activity_add_contact_"
+            android:name=".AddContactActivity"
+            android:label="@string/title_activity_add_contact"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"

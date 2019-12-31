@@ -8,8 +8,8 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Contact::class), version = 1, exportSchema = false)
-public abstract class ContactRoomDatabase : RoomDatabase() {
+@Database(entities = [Contact::class], version = 1, exportSchema = false)
+abstract class ContactRoomDatabase : RoomDatabase() {
 
     abstract fun contactDAO(): ContactDAO
 
@@ -28,6 +28,7 @@ public abstract class ContactRoomDatabase : RoomDatabase() {
             // Delete all content here.
             contactDao.deleteAll()
 
+            contactDao.insert(Contact("Damian", "Radecki", 533252518, "damrad@email.pl", "M"))
         }
     }
 

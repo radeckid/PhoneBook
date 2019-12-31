@@ -2,7 +2,7 @@
     <string name="app_name">PhoneBook</string>
     <string name="title_activity_main">Kontakty</string>
     <string name="search">Szukaj</string>
-    <string name="title_activity_add_contact_">Imie Nazwisko</string>
+    <string name="title_activity_add_contact" />
     <string name="name">Imię:</string>
     <string name="surname">Nazwisko:</string>
     <string name="email">Adres e-mail:</string>
@@ -13,5 +13,11 @@
     <string name="man">Mężczyzna</string>
     <string name="gender">Płeć:</string>
     <string name="call">Zadzwoń</string>
+    <string name="premissions_to_call">Uprawnienia do dzwonienia nie zostały przyznane!</string>
+    <string name="loading_error">Błąd wczytywania</string>
+    <string name="cannot_be_empty">Pole nie może być puste!</string>
+    <string name="choice_only_one">Wybierz prawidłową płeć</string>
+    <string name="Woman">Kobieta</string>
+    <string name="Man">Mężczyzna</string>
 
 </resources>

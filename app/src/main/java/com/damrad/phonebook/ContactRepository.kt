@@ -9,4 +9,8 @@ class ContactRepository(private val contactDAO: ContactDAO) {
     suspend fun insert(contact: Contact) {
         contactDAO.insert(contact)
     }
+
+    fun selectId(contactID: Int) {
+        contactDAO.selectId(contactID)
+    }
 }

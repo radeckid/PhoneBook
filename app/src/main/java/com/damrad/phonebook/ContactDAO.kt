@@ -15,6 +15,9 @@ interface ContactDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(contact: Contact)
 
+    @Query("SELECT * FROM contact_table WHERE Id=:contactId")
+    fun selectId(contactId: Int) : Contact
+
     @Query("DELETE FROM contact_table")
     suspend fun deleteAll()
 
