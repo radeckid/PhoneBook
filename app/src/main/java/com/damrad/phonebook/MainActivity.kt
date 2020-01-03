@@ -1,8 +1,17 @@
 package com.damrad.phonebook
 
+import android.R.attr.top
 import android.content.Intent
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -16,8 +25,7 @@ import com.damrad.phonebook.ShowContactActivity.Companion.EXTRA_PHONE_NUMBER
 import com.damrad.phonebook.ShowContactActivity.Companion.EXTRA_SURNAME
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.content_show_contact.view.*
-import java.util.*
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +36,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var contactViewModel: ContactViewModel
     private lateinit var adapter: ContactAdapter
 
+    private var clonedList: Array<Contact> = emptyArray<Contact>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,10 +47,14 @@ class MainActivity : AppCompatActivity() {
         mainRecycler.adapter = adapter
         mainRecycler.layoutManager = LinearLayoutManager(this)
 
+
         //Observe list change
         contactViewModel = ViewModelProviders.of(this).get(ContactViewModel::class.java)
         contactViewModel.allContacts.observe(this, Observer { contacts ->
-            contacts?.let { adapter.setList(it as ArrayList<Contact>) }
+            contacts?.let {
+                adapter.setList(it as ArrayList<Contact>)
+                clonedList = adapter.getList().toTypedArray()
+            }
         })
 
         fabAdd.setOnClickListener {
@@ -75,9 +89,58 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-
+                Toast.makeText(
+                    this@MainActivity,
+                    "Usunięto: ${adapter.getItemAt(viewHolder.adapterPosition).name} ${adapter.getItemAt(viewHolder.adapterPosition).surname}",
+                    Toast.LENGTH_SHORT
+                ).show()
+                contactViewModel.deleteContactWithId(adapter.getItemAt(viewHolder.adapterPosition).id)
             }
+            
         }).attachToRecyclerView(mainRecycler)
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_main, menu)
+        setSearchBar(menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun setSearchBar(menu: Menu) {
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                filter(newText)
+                return false
+            }
+        })
+    }
+
+    private fun filter(text: String) {
+        val filteredList: ArrayList<Contact> = ArrayList<Contact>()
+        for (contact in clonedList) {
+            if (contact.name.toLowerCase().contains(text.toLowerCase()) ||
+                contact.surname.toLowerCase().contains(text.toLowerCase()) ||
+                contact.email.toLowerCase().contains(text.toLowerCase()) ||
+                contact.phoneNumber.toString().toLowerCase().contains(text.toLowerCase())
+            ) {
+                filteredList.add(contact)
+            }
+        }
+        if (filteredList.size == 0) {
+            Toast.makeText(applicationContext, getString(R.string.nothing_found), Toast.LENGTH_SHORT).show()
+        }
+        adapter.setList(filteredList)
     }
 
 }

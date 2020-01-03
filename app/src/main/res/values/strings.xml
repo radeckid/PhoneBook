@@ -19,5 +19,11 @@
     <string name="choice_only_one">Wybierz prawidłową płeć</string>
     <string name="Woman">Kobieta</string>
     <string name="Man">Mężczyzna</string>
+    <string name="something_went_wrong">Coś poszło nie tak</string>
+    <string name="image_not_choiced">Nie wybrano obrazu</string>
+    <string name="choice_a_photo">Wybierz zdjęcie</string>
+    <string name="new_contact">Nowy kontakt</string>
+    <string name="nothing_found">Nic nie znaleziono</string>
+    <string name="contact_added">Kontakt dodano</string>
 
 </resources>

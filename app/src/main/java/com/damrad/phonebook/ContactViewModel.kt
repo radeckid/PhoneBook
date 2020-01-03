@@ -22,7 +22,7 @@ class ContactViewModel(application: Application) : AndroidViewModel(application)
         repository.insert(contact)
     }
 
-    fun selectId(contactID: Int) = viewModelScope.launch {
-        repository.selectId(contactID)
+    fun deleteContactWithId(id: Int) = viewModelScope.launch {
+        repository.deleteContactWithId(id)
     }
 }

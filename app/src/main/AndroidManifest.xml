@@ -4,6 +4,7 @@
     package="com.damrad.phonebook">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="false"
@@ -15,6 +16,7 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".ShowContactActivity"
+            android:label="@string/title_activity_add_contact"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddContactActivity"

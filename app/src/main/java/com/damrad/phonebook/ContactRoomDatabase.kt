@@ -19,7 +19,7 @@ abstract class ContactRoomDatabase : RoomDatabase() {
             super.onOpen(db)
             INSTANCE?.let { database ->
                 scope.launch {
-                    populateDatabase(database.contactDAO())
+//                    populateDatabase(database.contactDAO())
                 }
             }
         }
@@ -28,7 +28,7 @@ abstract class ContactRoomDatabase : RoomDatabase() {
             // Delete all content here.
             contactDao.deleteAll()
 
-            contactDao.insert(Contact("Damian", "Radecki", 533252518, "damrad@email.pl", "M"))
+            contactDao.insert(Contact("Damian", "Radecki", 123123123, "damrad@email.pl", "M"))
         }
     }
 

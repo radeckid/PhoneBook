@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_show_contact.*
 import kotlinx.android.synthetic.main.content_show_contact.*
 
@@ -23,6 +22,7 @@ class ShowContactActivity : AppCompatActivity() {
         const val EXTRA_EMAIL = "com.damrad.phonebook.email"
         const val EXTRA_PHONE_NUMBER = "com.damrad.phonebook.phonenumber"
         const val EXTRA_GENDER = "com.damrad.phonebook.gender"
+        const val EXTRA_EDIT = "com.damrad.phonebook.editing"
     }
 
     private val CALL_PERMISSION_REQUEST_CODE = 1
@@ -49,27 +49,36 @@ class ShowContactActivity : AppCompatActivity() {
                 emailTV.text = email
                 phoneNrTV.text = phoneNr.toString()
                 genderTV.text = gender
+
+                if (gender == getString(R.string.Woman)) {
+                    imageShowIV.setImageResource(R.drawable.woman)
+                } else {
+                    imageShowIV.setImageResource(R.drawable.man)
+                }
             } else {
                 Toast.makeText(this, getString(R.string.loading_error), Toast.LENGTH_LONG).show()
                 finish()
             }
         }
 
-        editFab.setOnClickListener { view ->
-            Snackbar.make(view, "Edytuj kontakt ", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        editFab.setOnClickListener {
+            val editIntent = Intent(applicationContext, AddContactActivity::class.java)
+            editIntent.putExtras(intent)
+            editIntent.putExtra(EXTRA_EDIT, true)
+            startActivity(editIntent)
+            finish()
         }
 
         callContact.setOnClickListener {
-            val intent = Intent(Intent.ACTION_CALL)
+            val callIntent = Intent(Intent.ACTION_CALL)
             val phoneCall: String = "tel:" + phoneNrTV.text
-            intent.data = Uri.parse(phoneCall)
+            callIntent.data = Uri.parse(phoneCall)
 
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, getString(R.string.premissions_to_call), Toast.LENGTH_LONG).show()
                 ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CALL_PHONE), CALL_PERMISSION_REQUEST_CODE)
             } else {
-                startActivity(intent)
+                startActivity(callIntent)
             }
         }
     }

@@ -2,6 +2,7 @@ package com.damrad.phonebook
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.res.Resources
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.Filter
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import kotlinx.android.synthetic.main.activity_show_contact.*
 import java.util.*
 
 
@@ -25,7 +27,6 @@ class ContactAdapter internal constructor(context: Context) : RecyclerView.Adapt
         init {
             nameSurnameTV = itemView.findViewById(R.id.nameSurnameTV)
             avatarIMG = itemView.findViewById(R.id.avatarIMG)
-
             itemView.setOnClickListener {
                 val position: Int = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
@@ -41,11 +42,18 @@ class ContactAdapter internal constructor(context: Context) : RecyclerView.Adapt
         return ContactHolder(view, onClickInterface)
     }
 
-    @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ContactHolder, position: Int) {
-        holder.avatarIMG.setImageResource(R.drawable.ic_launcher_background)
-        holder.nameSurnameTV.text = list[position].name + " " + list[position].surname.trim()
+        if (list[position].gender.toLowerCase() == "kobieta") {
+            holder.avatarIMG.setImageResource(R.drawable.woman)
+        } else {
+            holder.avatarIMG.setImageResource(R.drawable.man)
+        }
+
+        val name = list[position].name + " " + list[position].surname.trim()
+        holder.nameSurnameTV.text = name
     }
+
+
 
     fun setOnItemClickListener(onClickInterface: OnClickInterface?) {
         this.onClickInterface = onClickInterface
@@ -58,6 +66,10 @@ class ContactAdapter internal constructor(context: Context) : RecyclerView.Adapt
     fun setList(list: ArrayList<Contact>) {
         this.list = list
         notifyDataSetChanged()
+    }
+
+    fun getList(): List<Contact> {
+        return list
     }
 
     override fun getItemCount(): Int {
